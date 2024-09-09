@@ -18,5 +18,11 @@ namespace E_Tech.Controllers
             var products = _context.Products.ToList();
             return View(products);
         }
+
+        //create
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
