@@ -41,12 +41,25 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+  @*   <footer class="border-top footer text-muted">
         <div class="container">
             <img src="/brand_images/Busket.png" alt="..." width="30" class="me-2" />
             &copy; 2024 - Best Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+    </footer> *@
+    <footer class="footer mt-5 py-3 bg-white">
+        <div class="container">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link px-2 text-body-secondary">Home</a></li>
+                <li class="nav-item"><a asp-area="" asp-controller="Products" asp-action="index" class="nav-link px-2 text-body-secondary">Products</a></li>
+            </ul>
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="/brand_images/Busket.png" alt="..." width="30" class="me-5" />
+                <p class="text-center text-body-secondary mb-0">&copy; @DateTime.Now.Year E-Tech Website</p>
+            </div>
+        </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
