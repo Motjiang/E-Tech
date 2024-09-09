@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using E_Tech.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Tech.Services
 {
@@ -8,7 +9,7 @@ namespace E_Tech.Services
         {
         }
 
-        //public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
         //public DbSet<Category> Categories { get; set; }
         //public DbSet<Brand> Brands { get; set; }
         //public DbSet<Cart> Carts { get; set; }
