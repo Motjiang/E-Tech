@@ -2,74 +2,121 @@
     ViewData["Title"] = "Privacy Policy";
 }
 
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
 
+    .background-image {
+        position: fixed; /* Keep it fixed in the viewport */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/path/to/your/background-image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.5; /* Adjust the transparency of the background image */
+        z-index: -1; /* Ensure the image is behind the content */
+    }
 
-<h1>Privacy Policy</h1>
-<p><strong>Effective Date:</strong> @DateTime.Now.ToString("dd MMMM yyyy")</p>
+    .content {
+        position: relative;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque white background for readability */
+        border-radius: 8px;
+        max-width: 800px;
+        margin: 20px auto; /* Adjust margin for vertical scrolling */
+        z-index: 1; /* Ensure the content is above the background */
+    }
 
-<h2>Introduction</h2>
-<p>Welcome to E-Tech. We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines the types of information we collect, how we use and protect that information, and your rights regarding your personal data.</p>
+    .hero-image {
+        display: block;
+        margin: 20px auto;
+        height: 50vh;
+        object-fit: cover;
+        width: 100%;
+    }
+</style>
 
-<h2>Information We Collect</h2>
-<p>When you interact with our website, we may collect the following types of information:</p>
-<ul>
-    <li><strong>Personal Information:</strong> This includes your name, email address, phone number, shipping address, and payment information when you make a purchase.</li>
-    <li><strong>Browsing Data:</strong> Information about your visits to our website, including your IP address, browser type, referring/exit pages, and operating system.</li>
-    <li><strong>Purchase History:</strong> Details of the products you’ve purchased, including category, quantity, and price.</li>
-</ul>
+<div class="background-image">
+    <img src="/brand_images/Busket.png" class="hero-image" alt="hero" />
+</div>
 
-<h2>How We Use Your Information</h2>
-<p>We use your information to provide, maintain, and improve our services, including:</p>
-<ul>
-    <li>Processing transactions and delivering products</li>
-    <li>Sending order confirmations, updates, and customer support communications</li>
-    <li>Personalizing your shopping experience based on your preferences and purchase history</li>
-    <li>Analyzing website usage to improve our offerings and enhance user experience</li>
-    <li>Sending promotional emails about new products, special offers, or other information we think you may find interesting (you can opt-out at any time)</li>
-</ul>
+<div class="content">
 
-<h2>Categories of Products We Offer</h2>
-<p>At E-Tech, we offer a variety of products to meet your technology needs, including:</p>
-<ul>
-    <li>Phones</li>
-    <li>Computers</li>
-    <li>Accessories</li>
-    <li>Printers</li>
-    <li>Cameras</li>
-    <li>Other Electronic Devices</li>
-</ul>
+    <h1>Privacy Policy</h1>
+    <p><strong>Effective Date:</strong> @DateTime.Now.ToString("dd MMMM yyyy")</p>
 
-<h2>How We Protect Your Information</h2>
-<p>We implement a variety of security measures to safeguard your personal information:</p>
-<ul>
-    <li><strong>Encryption:</strong> Sensitive data, such as payment information, is encrypted using Secure Socket Layer (SSL) technology.</li>
-    <li><strong>Access Controls:</strong> Only authorized personnel have access to your personal data, and they are required to maintain its confidentiality.</li>
-    <li><strong>Data Retention:</strong> We retain your information for as long as necessary to fulfill the purposes outlined in this policy unless a longer retention period is required or permitted by law.</li>
-</ul>
+    <h2>Introduction</h2>
+    <p>Welcome to E-Tech. We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines the types of information we collect, how we use and protect that information, and your rights regarding your personal data.</p>
 
-<h2>Sharing Your Information</h2>
-<p>We do not sell, trade, or otherwise transfer your personal information to outside parties except as necessary to provide our services, such as with trusted third parties who assist us in operating our website, conducting our business, or servicing you. These parties agree to keep your information confidential.</p>
+    <h2>Information We Collect</h2>
+    <p>When you interact with our website, we may collect the following types of information:</p>
+    <ul>
+        <li><strong>Personal Information:</strong> This includes your name, email address, phone number, shipping address, and payment information when you make a purchase.</li>
+        <li><strong>Browsing Data:</strong> Information about your visits to our website, including your IP address, browser type, referring/exit pages, and operating system.</li>
+        <li><strong>Purchase History:</strong> Details of the products you’ve purchased, including category, quantity, and price.</li>
+    </ul>
 
-<h2>Your Rights</h2>
-<p>You have the right to:</p>
-<ul>
-    <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
-    <li><strong>Correction:</strong> Request that we correct any inaccuracies in your personal information.</li>
-    <li><strong>Deletion:</strong> Request that we delete your personal information, subject to legal obligations.</li>
-    <li><strong>Opt-Out:</strong> Opt-out of receiving marketing communications from us at any time.</li>
-</ul>
+    <h2>How We Use Your Information</h2>
+    <p>We use your information to provide, maintain, and improve our services, including:</p>
+    <ul>
+        <li>Processing transactions and delivering products</li>
+        <li>Sending order confirmations, updates, and customer support communications</li>
+        <li>Personalizing your shopping experience based on your preferences and purchase history</li>
+        <li>Analyzing website usage to improve our offerings and enhance user experience</li>
+        <li>Sending promotional emails about new products, special offers, or other information we think you may find interesting (you can opt-out at any time)</li>
+    </ul>
 
-<h2>Cookies and Tracking Technologies</h2>
-<p>We use cookies and similar tracking technologies to enhance your browsing experience and gather data on website usage. You can control cookie preferences through your browser settings.</p>
+    <h2>Categories of Products We Offer</h2>
+    <p>At E-Tech, we offer a variety of products to meet your technology needs, including:</p>
+    <ul>
+        <li>Phones</li>
+        <li>Computers</li>
+        <li>Accessories</li>
+        <li>Printers</li>
+        <li>Cameras</li>
+        <li>Other Electronic Devices</li>
+    </ul>
 
-<h2>Changes to This Privacy Policy</h2>
-<p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal obligations. We encourage you to review this policy periodically for any updates.</p>
+    <h2>How We Protect Your Information</h2>
+    <p>We implement a variety of security measures to safeguard your personal information:</p>
+    <ul>
+        <li><strong>Encryption:</strong> Sensitive data, such as payment information, is encrypted using Secure Socket Layer (SSL) technology.</li>
+        <li><strong>Access Controls:</strong> Only authorized personnel have access to your personal data, and they are required to maintain its confidentiality.</li>
+        <li><strong>Data Retention:</strong> We retain your information for as long as necessary to fulfill the purposes outlined in this policy unless a longer retention period is required or permitted by law.</li>
+    </ul>
 
-<h2>Contact Us</h2>
-<p>If you have any questions or concerns about this Privacy Policy or how we handle your personal information, please contact us at:</p>
-<address>
-    <strong>E-Tech</strong><br>
-    [Insert Address]<br>
-    Email: <a href="mailto:[Insert Email]">[Insert Email]</a><br>
-    Phone: <a href="tel:[Insert Phone Number]">[Insert Phone Number]</a>
-</address>
+    <h2>Sharing Your Information</h2>
+    <p>We do not sell, trade, or otherwise transfer your personal information to outside parties except as necessary to provide our services, such as with trusted third parties who assist us in operating our website, conducting our business, or servicing you. These parties agree to keep your information confidential.</p>
+
+    <h2>Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+        <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
+        <li><strong>Correction:</strong> Request that we correct any inaccuracies in your personal information.</li>
+        <li><strong>Deletion:</strong> Request that we delete your personal information, subject to legal obligations.</li>
+        <li><strong>Opt-Out:</strong> Opt-out of receiving marketing communications from us at any time.</li>
+    </ul>
+
+    <h2>Cookies and Tracking Technologies</h2>
+    <p>We use cookies and similar tracking technologies to enhance your browsing experience and gather data on website usage. You can control cookie preferences through your browser settings.</p>
+
+    <h2>Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal obligations. We encourage you to review this policy periodically for any updates.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have any questions or concerns about this Privacy Policy or how we handle your personal information, please contact us at:</p>
+    <address>
+        <strong>E-Tech</strong><br>
+        [Insert Address]<br>
+        Email: <a href="mailto:[Insert Email]">[Insert Email]</a><br>
+        Phone: <a href="tel:[Insert Phone Number]">[Insert Phone Number]</a>
+    </address>
+</div>

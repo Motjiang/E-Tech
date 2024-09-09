@@ -35,18 +35,21 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-  @*   <footer class="border-top footer text-muted">
+    @if(ViewData["HomePage"] == null)
+    {
         <div class="container">
-            <img src="/brand_images/Busket.png" alt="..." width="30" class="me-2" />
-            &copy; 2024 - Best Store - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer> *@
+    }
+    else
+    {
+        @RenderBody()
+    }
+
+
+
     <footer class="footer mt-5 py-3 bg-white">
         <div class="container">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
