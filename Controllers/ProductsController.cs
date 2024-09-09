@@ -158,5 +158,24 @@ namespace E_Tech.Controllers
             return RedirectToAction("Index", "Products");
         }
 
+        //delete
+        public IActionResult Delete(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return RedirectToAction("Index", "Products");
+            }
+
+            string imageFullPath = _environment.WebRootPath + "/products/" + product.ImageFile;
+            System.IO.File.Delete(imageFullPath);
+
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Products");
+        }
     }
+
 }
+
