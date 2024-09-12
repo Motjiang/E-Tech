@@ -150,6 +150,10 @@ namespace E_Tech.Controllers
             //search
             ViewData["Search"] = search ?? "";
 
+            //sort or order View Data
+            ViewData["Column"] = column;
+            ViewData["OrderBy"] = orderBy;
+
             return View(productsList);
         }
 
