@@ -22,10 +22,16 @@ namespace E_Tech.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int pageIndex)
+        public IActionResult Index(int pageIndex, string? search)
         {
             //List
             IQueryable<Product> products = _context.Products;
+
+            //Search function
+            if (!string.IsNullOrEmpty(search))
+            {
+                products = products.Where(p => p.Name.Contains(search) || p.Brand.Contains(search) || p.Category.Contains(search));
+            }
 
             //Order
             products = products.OrderByDescending(p => p.Id);
@@ -47,6 +53,9 @@ namespace E_Tech.Controllers
             var productsList = products.ToList();
             ViewData["TotalPages"] = totalPages;
             ViewData["PageIndex"] = pageIndex;
+
+            //search
+            ViewData["Search"] = search ?? "";
 
             return View(productsList);
         }

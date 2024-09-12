@@ -2,7 +2,8 @@
 
 @{
     int pageIndex = (int)ViewData["pageIndex"]!;
-int totalPages = (int)ViewData["totalPages"]!;
+    int totalPages = (int)ViewData["totalPages"]!;
+    string search = (string)ViewData["search"]!;
 }
 
 <h2 class="text-center mb-5">List of Products</h2>
@@ -12,7 +13,7 @@ int totalPages = (int)ViewData["totalPages"]!;
     </div>
     <div class="col">
         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" name="search" placeholder="Search by Name or Brand" aria-label="Search">
+            <input class="form-control me-2" type="search" name="search" value="@search" placeholder="Search by Name or Brand" aria-label="Search">
             <button class="btn btn-outline-success btn-sm d-flex align-items-center" type="submit">
                 <i class="bi bi-search me-1"></i>Search
             </button>
@@ -65,8 +66,8 @@ int totalPages = (int)ViewData["totalPages"]!;
             }
 
             <li class="page-item @active">
-                <a class="page-link" asp-route-pageIndex="@i">@i</a>
-                @*asp-route-search="@search" asp-route-column="@column" asp-route-orderBy="@orderBy"*@
+                <a class="page-link" asp-route-search="@search" asp-route-pageIndex="@i">@i</a>
+                @* asp-route-column="@column" asp-route-orderBy="@orderBy"*@
             </li>
         }
     </ul>
