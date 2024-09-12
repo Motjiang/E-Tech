@@ -1,4 +1,5 @@
-﻿@model List<Product>
+﻿@using Microsoft.AspNetCore.Html
+@model List<Product>
 
 @{
     int pageIndex = (int)ViewData["pageIndex"]!;
@@ -6,6 +7,19 @@
     string search = (string)ViewData["search"]!;
     string column = (string)ViewData["Column"]!;
     string orderBy = (string)ViewData["OrderBy"]!;
+
+    // Sort arrow
+    HtmlString getArrow(string tableColumn)
+    {
+        if (tableColumn != column) return new HtmlString("");
+
+        if (orderBy == "desc")
+        {
+            return new HtmlString("<i class='bi bi-arrow-down'></i>");
+        }
+
+        return new HtmlString("<i class='bi bi-arrow-up'></i>");
+    }
 
 }
 
