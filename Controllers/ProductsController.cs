@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Security;
 
 namespace E_Tech.Controllers
 {
@@ -22,7 +23,7 @@ namespace E_Tech.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index(int pageIndex, string? search)
+        public IActionResult Index(int pageIndex, string? search, string? column, string? orderBy)
         {
             //List
             IQueryable<Product> products = _context.Products;
@@ -33,8 +34,100 @@ namespace E_Tech.Controllers
                 products = products.Where(p => p.Name.Contains(search) || p.Brand.Contains(search) || p.Category.Contains(search));
             }
 
-            //Order
-            products = products.OrderByDescending(p => p.Id);
+            //Order or Sort function
+            string[] validColumns = { "Id", "Name", "Brand", "Category", "Price", "CreatedAt" };
+            string[] validOrderBy = { "desc", "asc"};
+
+
+            //this will be the default column to order by
+            if (!validColumns.Contains(column))
+            {
+                column = "Id";
+            }
+
+            if (!validOrderBy.Contains(orderBy))
+            {
+                orderBy = "desc";
+            }
+
+            //Check if the column is Name
+            if (column == "Name")
+            {
+                if (orderBy == "asc")
+                {
+                    products = products.OrderBy(p => p.Name);
+                }
+                else
+                {
+                    products = products.OrderByDescending(p => p.Name);
+                }
+            }
+
+            //Check if the column is Brand
+            else if (column == "Brand")
+            {
+                if (orderBy == "asc")
+                {
+                    products = products.OrderBy(p => p.Brand);
+                }
+                else
+                {
+                    products = products.OrderByDescending(p => p.Brand);
+                }
+            }
+
+            //Check if the column is Category
+            else if (column == "Category")
+            {
+                if (orderBy == "asc")
+                {
+                    products = products.OrderBy(p => p.Category);
+                }
+                else
+                {
+                    products = products.OrderByDescending(p => p.Category);
+                }
+            }
+
+            //Check if the column is Price
+            else if (column == "Price")
+            {
+                if (orderBy == "asc")
+                {
+                    products = products.OrderBy(p => p.Price);
+                }
+                else
+                {
+                    products = products.OrderByDescending(p => p.Price);
+                }
+            }
+
+            //Check if the column is CreatedAt
+            else if (column == "CreatedAt")
+            {
+                if (orderBy == "asc")
+                {
+                    products = products.OrderBy(p => p.CreatedAt);
+                }
+                else
+                {
+                    products = products.OrderByDescending(p => p.CreatedAt);
+                }
+            }
+
+            //Check if the column is Id
+            else
+            {
+                if (orderBy == "asc")
+                {
+                    products = products.OrderBy(p => p.Id);
+                }
+                else
+                {
+                    products = products.OrderByDescending(p => p.Id);
+                }
+            }
+
 
             //Pagination function
             if (pageIndex < 1)

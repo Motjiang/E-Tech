@@ -4,7 +4,26 @@
     int pageIndex = (int)ViewData["pageIndex"]!;
     int totalPages = (int)ViewData["totalPages"]!;
     string search = (string)ViewData["search"]!;
+    string column = (string)ViewData["Column"]!;
+    string orderBy = (string)ViewData["OrderBy"]!;
+
 }
+
+
+@* Sort table script *@
+<script>
+    function sortTable(column) {
+        let orderBy = "desc"
+        let currentColumn = "@column";
+        let currentOrder = "@orderBy";
+        if (column === currentColumn) {
+            if (currentOrder == "asc") orderBy = "desc";
+            else orderBy = "asc";
+        }
+        window.location.href = "?search=@(search)&column=" + column + "&orderBy=" + orderBy
+    }
+</script>
+
 
 <h2 class="text-center mb-5">List of Products</h2>
 <div class="row mb-5">
@@ -24,7 +43,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID </th>
+            <th style ="cursor: pointer;" onclick="sortTable('Id')">ID </th>
             <th>Name</th>
             <th>Brand</th>
             <th>Category</th>
