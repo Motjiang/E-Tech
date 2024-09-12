@@ -13,6 +13,7 @@ namespace E_Tech.Controllers
         //applicationDbContext
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _environment;
+        private readonly int _pageSize = 5;
 
         //constructor
         public ProductsController(ApplicationDbContext context, IWebHostEnvironment environment)
@@ -23,7 +24,7 @@ namespace E_Tech.Controllers
 
         public IActionResult Index()
         {
-            var products = _context.Products.ToList();
+            var products = _context.Products.OrderByDescending(p => p.Id).ToList();
             return View(products);
         }
 
