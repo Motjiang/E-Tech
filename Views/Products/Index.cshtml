@@ -17,8 +17,12 @@
         let currentColumn = "@column";
         let currentOrder = "@orderBy";
         if (column === currentColumn) {
-            if (currentOrder == "asc") orderBy = "desc";
-            else orderBy = "asc";
+            if (currentOrder == "asc") {
+                orderBy = "desc";
+            }
+            else {
+                orderBy = "asc";
+            }
         }
         window.location.href = "?search=@(search)&column=" + column + "&orderBy=" + orderBy
     }
