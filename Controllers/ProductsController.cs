@@ -22,10 +22,33 @@ namespace E_Tech.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int pageIndex)
         {
-            var products = _context.Products.OrderByDescending(p => p.Id).ToList();
-            return View(products);
+            //List
+            IQueryable<Product> products = _context.Products;
+
+            //Order
+            products = products.OrderByDescending(p => p.Id);
+
+            //Pagination function
+            if (pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
+
+            //get the total number of products
+            decimal totalProducts = products.Count();
+            //get the total number of pages
+            int totalPages = (int)Math.Ceiling(totalProducts / _pageSize);
+            //get the current page
+            products = products.Skip((pageIndex - 1) * _pageSize).Take(_pageSize);
+
+            //send the products to the view
+            var productsList = products.ToList();
+            ViewData["TotalPages"] = totalPages;
+            ViewData["PageIndex"] = pageIndex;
+
+            return View(productsList);
         }
 
         //create
