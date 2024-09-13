@@ -2,7 +2,7 @@
 using E_Tech.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Exception.Controllers
+namespace E_Tech.Controllers
 {
     public class StoreController : Controller
     {
@@ -70,16 +70,16 @@ namespace Exception.Controllers
             ViewBag.PageIndex = pageIndex;
             ViewBag.TotalPages = totalPages;
 
-            //var storeSearchModel = new StoreSearchModel()
-            //{
-            //    Search = search,
-            //    Brand = brand,
-            //    Category = category,
-            //    Sort = sort
-            ////};
+            var storeSearchModel = new StoreSearchModel()
+            {
+                Search = search,
+                Brand = brand,
+                Category = category,
+                Sort = sort
+            };
 
-            //return View(storeSearchModel);
-            return View();
+            return View(storeSearchModel);
+
         }
 
 
