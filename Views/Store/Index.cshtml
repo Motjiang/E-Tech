@@ -54,8 +54,7 @@
                     Brand: @product.Brand, Category: @product.Category
                 </p>
                 <h4 class="mb-3">R @(product.Price)</h4>
-                <a class="btn btn-primary btn-sm mb-2" asp-controller="Store"
-                   asp-action="Details" asp-route-id="@product.Id" role="button">Details</a>
+                <a class="btn btn-primary btn-sm mb-2" asp-controller="Store" asp-action="Details" asp-route-id="@product.Id" role="button">Details</a>
                 <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(this, @product.Id)">
                     Add to Cart <i class="bi bi-cart4"></i>
                 </button>
@@ -73,8 +72,7 @@
             if (i == ViewBag.PageIndex) active = "active";
             <li class="page-item @active">
                 <a class="page-link" asp-route-pageIndex="@i"
-                   asp-route-search="@Model.Search" asp-route-brand="@Model.Brand"
-                   asp-route-category="@Model.Category" asp-route-sort="@Model.Sort">@i</a>
+                   asp-route-search="@Model.Search" asp-route-brand="@Model.Brand" asp-route-category="@Model.Category" asp-route-sort="@Model.Sort">@i</a>
             </li>
         }
     </ul>
