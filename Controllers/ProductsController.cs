@@ -9,6 +9,7 @@ using System.Security;
 
 namespace E_Tech.Controllers
 {
+    [Route("/Administrator/[Controller]/[action]")]
     public class ProductsController : Controller
     {
         //applicationDbContext
