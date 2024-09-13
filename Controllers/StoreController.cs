@@ -16,39 +16,40 @@ namespace E_Tech.Controllers
 
         public IActionResult Index(int pageIndex, string? search, string? brand, string? category, string? sort)
         {
-            IQueryable<Product> query = context.Products;
+            // list of products
+            IQueryable<Product> products = context.Products;
 
             // search functionality
             if (search != null && search.Length > 0)
             {
-                query = query.Where(p => p.Name.Contains(search));
+                products = products.Where(p => p.Name.Contains(search));
             }
 
 
             // filter functionality
             if (brand != null && brand.Length > 0)
             {
-                query = query.Where(p => p.Brand.Contains(brand));
+                products = products.Where(p => p.Brand.Contains(brand));
             }
 
             if (category != null && category.Length > 0)
             {
-                query = query.Where(p => p.Category.Contains(category));
+                products = products.Where(p => p.Category.Contains(category));
             }
 
             // sort functionality
             if (sort == "price_asc")
             {
-                query = query.OrderBy(p => p.Price);
+                products = products.OrderBy(p => p.Price);
             }
             else if (sort == "price_desc")
             {
-                query = query.OrderByDescending(p => p.Price);
+                products = products.OrderByDescending(p => p.Price);
             }
             else
             {
                 // newest products first
-                query = query.OrderByDescending(p => p.Id);
+                products = products.OrderByDescending(p => p.Id);
             }
 
 
@@ -59,17 +60,19 @@ namespace E_Tech.Controllers
                 pageIndex = 1;
             }
 
-            decimal count = query.Count();
+            // count total pages
+            decimal count = products.Count();
             int totalPages = (int)Math.Ceiling(count / pageSize);
-            query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            products = products.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
 
-            var products = query.ToList();
-
-            ViewBag.Products = products;
+            var productList = products.ToList();
+            // pass data to view
+            ViewBag.Products = productList;
             ViewBag.PageIndex = pageIndex;
             ViewBag.TotalPages = totalPages;
 
+            // pass search data to view
             var storeSearchModel = new StoreSearchModel()
             {
                 Search = search,
@@ -81,7 +84,6 @@ namespace E_Tech.Controllers
             return View(storeSearchModel);
 
         }
-
 
         public IActionResult Details(int id)
         {
