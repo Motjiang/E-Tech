@@ -79,5 +79,56 @@ namespace E_Tech.Controllers
 
             return View(registerDto);
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                await _signInManager.SignOutAsync();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+        public IActionResult Login()
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            if (_signInManager.IsSignedIn(User))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(loginDto);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(loginDto.Email, loginDto.Password,
+                loginDto.RememberMe, false);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Invalid login attempt.";
+            }
+
+            return View(loginDto);
+        }
     }
 }
