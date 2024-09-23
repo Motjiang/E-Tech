@@ -1,11 +1,12 @@
 using E_Tech.Models;
 using E_Tech.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace E_Tech.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
 

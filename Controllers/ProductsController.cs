@@ -1,6 +1,7 @@
 ﻿using E_Tech.DTOs;
 using E_Tech.Models;
 using E_Tech.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
@@ -9,7 +10,8 @@ using System.Security;
 
 namespace E_Tech.Controllers
 {
-    [Route("/Administrator/[Controller]/[action]")]
+	[Authorize(Roles = "admin")]
+	[Route("/Administrator/[Controller]/[action]")]
     public class ProductsController : Controller
     {
         //applicationDbContext

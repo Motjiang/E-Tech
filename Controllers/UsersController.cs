@@ -1,11 +1,14 @@
 ﻿using E_Tech.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace E_Tech.Controllers
 {
-    public class UsersController : Controller
+	[Authorize(Roles = "admin")]
+	[Route("/Administrator/[controller]/{action=Users}/{id?}")]
+	public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
