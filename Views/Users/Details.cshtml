@@ -52,10 +52,12 @@
 			<div class="col-sm-4">Role</div>
 			<div class="col-sm-8">
 				@{
+					
 					var roles = ViewBag.Roles;
 					var rolesStr = String.Join(", ", roles);
 
 
+					// Set the color of the badge based on the role
 					string color = "bg-secondary";
 					if (roles.Contains("admin"))
 					{

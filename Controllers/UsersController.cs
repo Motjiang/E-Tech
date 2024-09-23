@@ -89,5 +89,48 @@ namespace E_Tech.Controllers
             return View(appUser);
         }
 
-    }
+		public async Task<IActionResult> EditRole(string? id, string? newRole)
+		{
+			// Check if the id and newRole is null
+			if (id == null || newRole == null)
+			{
+				return RedirectToAction("Users", "Users");
+			}
+
+			// Check if the role exists
+			var roleExists = await _roleManager.RoleExistsAsync(newRole);
+			// Get the user by id
+			var appUser = await _userManager.FindByIdAsync(id);
+
+			// Check if the user is null
+			if (appUser == null || !roleExists)
+			{
+				return RedirectToAction("Users", "Users");
+			}
+
+			// Get the current user
+			var currentUser = await _userManager.GetUserAsync(User);
+			// Check if the current user is the same as the user to update
+			if (currentUser!.Id == appUser.Id)
+			{
+				// Set the error message
+				TempData["ErrorMessage"] = "You cannot update your own role!";
+				// Redirect to the details page
+				return RedirectToAction("Details", "Users", new { id });
+			}
+
+			// update user role
+			var userRoles = await _userManager.GetRolesAsync(appUser);
+			// Remove the user from the current roles
+			await _userManager.RemoveFromRolesAsync(appUser, userRoles);
+			// Add the user to the new role
+			await _userManager.AddToRoleAsync(appUser, newRole);
+
+			// Set the success message
+			TempData["SuccessMessage"] = "User Role updated successfully";
+			return RedirectToAction("Details", "Users", new { id });
+		}
+
+
+	}
 }
