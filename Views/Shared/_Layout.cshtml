@@ -36,6 +36,15 @@
                         </li>
                     </ul>
 
+                    <ul class="navbar-nav me-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
+                                <i class="bi bi-cart4 text-warning h3"></i>
+                                <span id="CartSize" class="badge rounded-pill bg-danger" style="vertical-align: top"></span>
+                            </a>
+                        </li>
+                    </ul>
+
                     @if (SignInManager.IsSignedIn(User))
                     {
                         var appUser = await UserManager.GetUserAsync(User);
