@@ -131,6 +131,46 @@ namespace E_Tech.Controllers
 			return RedirectToAction("Details", "Users", new { id });
 		}
 
+        public async Task<IActionResult> DeleteAccount(string? id)
+        {
+            // Check if the id is null
+            if (id == null)
+            {
+                return RedirectToAction("Users", "Users");
+            }
 
-	}
+            // Get the user by id
+            var appUser = await _userManager.FindByIdAsync(id);
+
+            // Check if the user is null
+            if (appUser == null)
+            {
+                return RedirectToAction("Users", "Users");
+            }
+
+            // Get the current user
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser!.Id == appUser.Id)
+            {
+                // Set the error message
+                TempData["ErrorMessage"] = "You cannot delete your own account!";
+                return RedirectToAction("Details", "Users", new { id });
+            }
+
+            // delete user account
+            var result = await _userManager.DeleteAsync(appUser);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Users", "Users");
+            }
+
+            // Set the error message
+            TempData["ErrorMessage"] = "Unable to delete this account: " + result.Errors.First().Description;
+            return RedirectToAction("Details", "Users", new { id });
+        }
+
+
+
+
+    }
 }
