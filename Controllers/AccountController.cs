@@ -130,5 +130,10 @@ namespace E_Tech.Controllers
 
             return View(loginDto);
         }
-    }
+
+		public IActionResult AccessDenied()
+		{
+			return RedirectToAction("Index", "Home");
+		}
+	}
 }
