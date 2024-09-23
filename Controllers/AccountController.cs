@@ -133,7 +133,7 @@ namespace E_Tech.Controllers
 
 		public IActionResult AccessDenied()
 		{
-			return RedirectToAction("Index", "Home");
+			return View();
 		}
 	}
 }
