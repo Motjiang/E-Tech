@@ -16,7 +16,7 @@ namespace E_Tech.Controllers
             _userManager = userManager;
             _roleManager = roleManager;
         }
-        public IActionResult Index(int? pageIndex)
+        public IActionResult Users(int? pageIndex)
         {
 
             IQueryable<ApplicationUser> query =  _userManager.Users.OrderByDescending(u => u.CreatedAt);
