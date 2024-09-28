@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@using E_Tech.Services
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +40,10 @@
                     <ul class="navbar-nav me-2">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
-                                <i class="bi bi-cart4 text-warning h3"></i>
-                                <span id="CartSize" class="badge rounded-pill bg-danger" style="vertical-align: top"></span>
+                                <i class="bi bi-cart4 text-danger h3"></i>
+                                <span id="CartSize" class="badge rounded-pill bg-danger" style="vertical-align: top">
+                                    @CartHelper.GetCartSize(Context.Request, Context.Response)
+                                </span>
                             </a>
                         </li>
                     </ul>
