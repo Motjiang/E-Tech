@@ -256,6 +256,14 @@ namespace E_Tech.Controllers
             return View(profileDto);
         }
 
+		[Authorize]
+		public IActionResult Password()
+		{
+			return View();
+		}
 
-    }
+
+
+
+	}
 }
