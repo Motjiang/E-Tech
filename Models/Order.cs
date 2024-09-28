@@ -9,7 +9,7 @@ namespace E_Tech.Models
 		public string ClientId { get; set; } = "";
 		public ApplicationUser Client { get; set; } = null!;
 
-		
+		public List<OrderItem> Items { get; set; } = new List<OrderItem>();
 
 		[Precision(16, 2)]
 		public decimal ShippingFee { get; set; }
