@@ -1,5 +1,6 @@
 ﻿using E_Tech.DTOs;
 using E_Tech.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -192,5 +193,69 @@ namespace E_Tech.Controllers
 
             return View(model);
         }
+
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var appUser = await _userManager.GetUserAsync(User);
+            if (appUser == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var profileDto = new ProfileDto()
+            {
+                FirstName = appUser.FirstName,
+                LastName = appUser.LastName,
+                Email = appUser.Email ?? "",
+                PhoneNumber = appUser.PhoneNumber,
+                Address = appUser.Address,
+            };
+
+            return View(profileDto);
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Profile(ProfileDto profileDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorMessage = "Please fill all the required fields with valid values";
+                return View(profileDto);
+            }
+
+            // Get the current user
+            var appUser = await _userManager.GetUserAsync(User);
+            if (appUser == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Update the user profile
+            appUser.FirstName = profileDto.FirstName;
+            appUser.LastName = profileDto.LastName;
+            appUser.UserName = profileDto.Email;
+            appUser.Email = profileDto.Email;
+            appUser.PhoneNumber = profileDto.PhoneNumber;
+            appUser.Address = profileDto.Address;
+
+            var result = await _userManager.UpdateAsync(appUser);
+
+            if (result.Succeeded)
+            {
+                ViewBag.SuccessMessage = "Profile updated successfully";
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Unable to update the profile: " + result.Errors.First().Description;
+            }
+
+
+            return View(profileDto);
+        }
+
+
     }
 }
