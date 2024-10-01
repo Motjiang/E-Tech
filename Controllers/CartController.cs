@@ -75,5 +75,83 @@ namespace E_Tech.Controllers
             return RedirectToAction("Confirm");
         }
 
+        public IActionResult Confirm()
+        {
+            List<OrderItem> cartItems = CartHelper.GetCartItems(Request, Response, _context);
+            decimal total = CartHelper.GetSubtotal(cartItems) + shippingFee;
+            int cartSize = 0;
+            foreach (var item in cartItems)
+            {
+                cartSize += item.Quantity;
+            }
+
+
+            string deliveryAddress = TempData["DeliveryAddress"] as string ?? "";
+            string paymentMethod = TempData["PaymentMethod"] as string ?? "";
+            TempData.Keep();
+
+
+            if (cartSize == 0 || deliveryAddress.Length == 0 || paymentMethod.Length == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            ViewBag.DeliveryAddress = deliveryAddress;
+            ViewBag.PaymentMethod = paymentMethod;
+            ViewBag.Total = total;
+            ViewBag.CartSize = cartSize;
+
+            return View();
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Confirm(int any)
+        {
+            var cartItems = CartHelper.GetCartItems(Request, Response, _context);
+
+            string deliveryAddress = TempData["DeliveryAddress"] as string ?? "";
+            string paymentMethod = TempData["PaymentMethod"] as string ?? "";
+            TempData.Keep();
+
+            if (cartItems.Count == 0 || deliveryAddress.Length == 0 || paymentMethod.Length == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var appUser = await _userManager.GetUserAsync(User);
+            if (appUser == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            // save the order
+            var order = new Order
+            {
+                ClientId = appUser.Id,
+                Items = cartItems,
+                ShippingFee = shippingFee,
+                DeliveryAddress = deliveryAddress,
+                PaymentMethod = paymentMethod,
+                PaymentStatus = "pending",
+                PaymentDetails = "",
+                OrderStatus = "created",
+                CreatedAt = DateTime.Now,
+            };
+
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+
+
+            // delete the shopping cart cookie
+            Response.Cookies.Delete("shopping_cart");
+
+            ViewBag.SuccessMessage = "Order created successfully";
+
+            return View();
+        }
+
+
     }
 }
