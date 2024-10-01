@@ -50,5 +50,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 If you have any questions or need further assistance, feel free to reach out to me:
 
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/your-profile/)
+- **Email**: motjiangbrilliant@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/brilliant-nhlamolo-motjiang-77b536270/
