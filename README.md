@@ -37,7 +37,8 @@ This project is a simple **e-commerce web application** built with **ASP.NET Cor
 - Add products to the cart and place an order using the Cash on Delivery option.
 
 ## Screenshots
-_Add relevant screenshots showcasing key features like product management, shopping cart, and client checkout._
+- Shopping Cart
+- Orders
 
 ## Future Improvements
 - Integrate an online payment gateway.
