@@ -125,10 +125,10 @@
                             </a>
                         </h4>
                         @item.Product.Category<br>
-                        @(item.UnitPrice)$
+                        R @(item.UnitPrice)
                     </td>
                     <td>@item.Quantity</td>
-                    <td>@(item.UnitPrice * item.Quantity)$</td>
+                    <td>R @(item.UnitPrice * item.Quantity)</td>
                 </tr>
             }
         }
@@ -139,15 +139,15 @@
 <div class="ms-auto mb-3" style="width: 250px">
     <div class="row">
         <div class="col fw-bold">Subtotal:</div>
-        <div class="col text-end">@(subtotal)$</div>
+        <div class="col text-end">R @(subtotal)</div>
     </div>
     <div class="row">
         <div class="col fw-bold">Shipping Fee:</div>
-        <div class="col text-end">@(Model.ShippingFee)$</div>
+        <div class="col text-end">R @(Model.ShippingFee)</div>
     </div>
     <div class="row">
         <div class="col fw-bold">Total:</div>
-        <div class="col text-end">@(subtotal + Model.ShippingFee)$</div>
+        <div class="col text-end">R @(subtotal + Model.ShippingFee)</div>
     </div>
 </div>
 
